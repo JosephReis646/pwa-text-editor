@@ -4,12 +4,12 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "start:dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "node server/server.js",
-    "server": "nodemon server/server.js",
-    "build": "npm run build --prefix client",
-    "install": "npm install",
-    "client": "npm start --prefix client"
+    "start:dev": "concurrently \"cd client && npm run build\" \"cd server && npm run server\" ",
+		"start": "npm run build && cd server && node server.js",
+		"server": "cd server node server.js --ignore client",
+		"build": "cd client && npm run build",
+		"install": "cd server && npm i && cd ../client && npm i",
+		"client": "cd client && npm start"
   },
   "keywords": [],
   "author": "",
@@ -19,15 +19,7 @@
     "if-env": "^1.0.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.4",
-    "@babel/preset-env": "^7.21.4",
-    "babel-loader": "^9.1.2",
-    "concurrently": "^5.2.0",
-    "css-loader": "^6.7.3",
-    "html-webpack-plugin": "^5.5.0",
-    "nodemon": "^2.0.4",
-    "style-loader": "^3.3.2",
-    "webpack-pwa-manifest": "^4.3.0",
-    "workbox-webpack-plugin": "^6.5.4"
+  	"concurrently": "^5.2.0",
+		"nodemon": "^2.0.4"
   }
 }

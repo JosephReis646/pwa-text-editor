@@ -17,38 +17,65 @@ module.exports = () => {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
+
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
-        inject: 'body',
+        template: './index.html',
+        title: 'Jate',
       }),
+
       new WebpackPwaManifest({
-        name: 'JATE Text Editor',
+        name: 'Text Editor',
         short_name: 'JATE',
         description: 'A text editor web application that works offline and stores data in IndexedDB',
         background_color: '#ffffff',
+        display: "standalone",
+				orientation: "portrait",
         crossorigin: 'use-credentials', // can be null, use-credentials or anonymous
+        publicPath: "./",
         icons: [
           {
-            src: path.resolve('src/assets/icon.png'),
-            sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 120, 152, 167, 180, 1024],
+					destination: path.join("assets", "icons"),
           },
         ],
       }),
+        new GenerateSW({
+          exclude: [/\.(?:png|jpg|jpeg|svg)$/],
+
+  
+            runtimeCaching: [
+              {
+                  urlPattern: /.(?:png|jpg|jpeg|svg)$/,
+                  handler: "CacheFirst",
+
+            options: {
+              cacheName: "images",
+              expiration: { maxEntries: 10 },
+              },
+              },
+            ],
+      }),
       new InjectManifest({
         swSrc: './src/sw.js',
+        swDest: "src-sw.js",
       }),
     ],
 
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.m?js$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
+              plugins: [
+								"@babel/plugin-proposal-object-rest-spread",
+								"@babel/transform-runtime",
+							],
             },
           },
         },
