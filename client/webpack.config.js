@@ -18,7 +18,26 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      new HtmlWebpackPlugin({
+        template: './src/index.html',
+        inject: 'body',
+      }),
+      new WebpackPwaManifest({
+        name: 'JATE Text Editor',
+        short_name: 'JATE',
+        description: 'A text editor web application that works offline and stores data in IndexedDB',
+        background_color: '#ffffff',
+        crossorigin: 'use-credentials', // can be null, use-credentials or anonymous
+        icons: [
+          {
+            src: path.resolve('src/assets/icon.png'),
+            sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+          },
+        ],
+      }),
+      new InjectManifest({
+        swSrc: './src/sw.js',
+      }),
     ],
 
     module: {
