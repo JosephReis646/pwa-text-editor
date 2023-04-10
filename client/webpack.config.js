@@ -34,7 +34,7 @@ module.exports = () => {
 				orientation: "portrait",
         crossorigin: 'use-credentials', // can be null, use-credentials or anonymous
         publicPath: "/",
-        start_url:'/',
+        // start_url:'/',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
@@ -43,22 +43,22 @@ module.exports = () => {
           },
         ],
       }),
-      //   new GenerateSW({
-      //     exclude: [/\.(?:png|jpg|jpeg|svg)$/],
+        new GenerateSW({
+          exclude: [/\.(?:png|jpg|jpeg|svg)$/],
 
   
-      //       runtimeCaching: [
-      //         {
-      //             urlPattern: /.(?:png|jpg|jpeg|svg)$/,
-      //             handler: "CacheFirst",
+            runtimeCaching: [
+              {
+                  urlPattern: /.(?:png|jpg|jpeg|svg)$/,
+                  handler: "CacheFirst",
 
-      //       options: {
-      //         cacheName: "images",
-      //         expiration: { maxEntries: 10 },
-      //         },
-      //         },
-      //       ],
-      // }),
+            options: {
+              cacheName: "images",
+              expiration: { maxEntries: 10 },
+              },
+              },
+            ],
+      }),
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: "src-sw.js",
