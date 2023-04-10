@@ -1,0 +1,41 @@
+{
+  "icons": [
+    {
+      "src": "/assets/icons/icon_1024x1024.c5df476245a751ae1f7776f71e0865b6.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon_180x180.6ca90785f3b9afaeea1f56efac4f88e7.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon_167x167.8fdca647b027f8eab9820d0f23027191.png",
+      "sizes": "167x167",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon_152x152.90304736b42f865d22b435f92a0bdb4b.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon_120x120.e7dbea5648981c4910a544e93cef3109.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon_96x96.97a96e0fc4eb2a8bec3b8d49d90f1d14.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "Text Editor",
+  "short_name": "JATE",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "A text editor web application that works offline and stores data in IndexedDB",
+  "background_color": "#ffffff"
+}
