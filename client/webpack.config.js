@@ -1,7 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
-const { InjectManifest } = require('workbox-webpack-plugin');
+const { InjectManifest, GenerateSW } = require('workbox-webpack-plugin');
+
 
 // TODO: Add and configure workbox plugins for a service worker and manifest file.
 // TODO: Add CSS loaders and babel to webpack.
@@ -32,7 +33,8 @@ module.exports = () => {
         display: "standalone",
 				orientation: "portrait",
         crossorigin: 'use-credentials', // can be null, use-credentials or anonymous
-        publicPath: "./",
+        publicPath: "/",
+        start_url:'/',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
@@ -41,24 +43,24 @@ module.exports = () => {
           },
         ],
       }),
-        new GenerateSW({
-          exclude: [/\.(?:png|jpg|jpeg|svg)$/],
+      //   new GenerateSW({
+      //     exclude: [/\.(?:png|jpg|jpeg|svg)$/],
 
   
-            runtimeCaching: [
-              {
-                  urlPattern: /.(?:png|jpg|jpeg|svg)$/,
-                  handler: "CacheFirst",
+      //       runtimeCaching: [
+      //         {
+      //             urlPattern: /.(?:png|jpg|jpeg|svg)$/,
+      //             handler: "CacheFirst",
 
-            options: {
-              cacheName: "images",
-              expiration: { maxEntries: 10 },
-              },
-              },
-            ],
-      }),
+      //       options: {
+      //         cacheName: "images",
+      //         expiration: { maxEntries: 10 },
+      //         },
+      //         },
+      //       ],
+      // }),
       new InjectManifest({
-        swSrc: './src/sw.js',
+        swSrc: './src-sw.js',
         swDest: "src-sw.js",
       }),
     ],
